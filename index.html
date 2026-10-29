@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#263BAA">
+<title>HEXADORA – Computer Troubleshooting for TVL-ICT</title>
+<meta name="description" content="Educational computer troubleshooting guides and a symptom-based quiz for Grade 12 TVL-ICT students.">
+<meta property="og:type" content="website"><meta property="og:title" content="HEXADORA – Computer Troubleshooting for TVL-ICT"><meta property="og:description" content="Free troubleshooting guides and a symptom quiz for Grade 12 TVL-ICT students.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpolygon points='20,2 36,11 36,29 20,38 4,29 4,11' fill='%23263BAA'/%3E%3Cpath d='M14 13v14M26 13v14M14 20h12' stroke='%23FFF4D6' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="hex" viewBox="0 0 40 40"><polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M14 13v14M26 13v14M14 20h12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol></svg>
+
+<div id="intro" role="dialog" aria-label="Hexadora introduction">
+  <div class="intro-in">
+    <div class="sad" aria-hidden="true">:(</div>
+    <p class="intro-h">Your PC ran into a problem... and Hexadora is here to teach you how to solve it.</p>
+    <p><span id="pct">0</span>% learning module loaded</p>
+    <p class="small">This is a fictional visual introduction. Nothing on your device is being scanned or changed.</p>
+    <button id="skip" class="btn">Skip Intro</button>
+  </div>
+</div>
+
+<noscript><p class="wrap">HEXADORA needs JavaScript to show the guides. Please turn it on in your browser.</p></noscript>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="#/"><svg class="logo" aria-hidden="true"><use href="#hex"/></svg><span>HEXADORA</span></a>
+  <button id="menuBtn" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">☰</button>
+  <nav id="nav" aria-label="Main">
+    <a href="#/" data-nav="home">Home</a>
+    <a href="#/library" data-nav="library">Troubleshooting</a>
+    <a href="#/quiz" data-nav="quiz">Diagnostic Quiz</a>
+    <a href="#/about" data-nav="about">About</a>
+    <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch to dark theme">🌙</button>
+  </nav>
+</header>
+
+<main id="main" tabindex="-1">
+<section data-view="home">
+  <div class="hero wrap">
+    <div>
+      <h1>Diagnose. Understand. Fix.</h1>
+      <p class="lead">Explore computer troubleshooting guides designed to help TVL-ICT students understand common problems and learn safe, systematic solutions.</p>
+      <div class="search-box">
+        <label for="heroSearch" class="sr">Search guides by symptom or keyword</label>
+        <input id="heroSearch" type="search" placeholder="Try “no display”, “slow”, “wifi”…" autocomplete="off">
+        <ul id="heroResults" class="results" aria-live="polite"></ul>
+      </div>
+      <div class="actions"><a class="btn" href="#/library">Explore Troubleshooting</a><a class="btn alt" href="#/quiz">Start Diagnostic Quiz</a></div>
+    </div>
+    <svg class="hero-art" viewBox="0 0 200 200" aria-hidden="true"><polygon points="100,10 178,55 178,145 100,190 22,145 22,55" fill="#263BAA"/><polygon points="100,35 156,67 156,133 100,165 44,133 44,67" fill="none" stroke="#FFF4D6" stroke-width="4"/><path d="M60 100h25l10-25 14 50 10-25h21" fill="none" stroke="#FFF4D6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <div class="wrap"><h2>Browse by category</h2><div id="cats" class="grid"></div>
+  <h2>Featured guides</h2><div id="featured" class="grid"></div>
+  <h2>How Hexadora works</h2>
+  <ol class="how"><li><strong>Observe.</strong> Note exactly what the computer does: lights, sounds, messages.</li><li><strong>Find a guide.</strong> Search, browse, or take the quiz.</li><li><strong>Test one thing at a time.</strong> Follow the steps and tick them off.</li><li><strong>Verify, or ask for help.</strong> Confirm the fix, or stop and consult your teacher.</li></ol>
+  <p>Educational troubleshooting means finding likely causes by testing safely, not guessing. A cause listed here is a possibility until your own checks confirm it.</p>
+  <h2>Frequently asked questions</h2>
+  <div class="faq">
+   <details><summary>Does Hexadora scan my computer?</summary><p>No. It never inspects your device or collects data. Guides and the quiz only use what you tell them.</p></details>
+   <details><summary>Will these steps fix every problem?</summary><p>No. Devices differ, so treat each guide as a learning path, not a guaranteed fix.</p></details>
+   <details><summary>When should I stop?</summary><p>Stop if a step involves opening electrical equipment, risks your files, or feels beyond your skill. Ask your teacher or a qualified technician.</p></details>
+   <details><summary>Is my progress saved?</summary><p>Progress, favorites and theme are saved only in your own browser, when it allows.</p></details>
+  </div></div>
+</section>
+
+<section data-view="library" hidden class="wrap">
+  <h1>Troubleshooting library</h1>
+  <div class="tools">
+    <div><label for="q">Search</label><input id="q" type="search" placeholder="Title, symptom or keyword" autocomplete="off"></div>
+    <div><label for="cat">Category</label><select id="cat"></select></div>
+    <div><label for="sort">Sort</label><select id="sort"><option value="az">A–Z</option><option value="cat">By category</option></select></div>
+    <button id="favOnly" class="btn alt" type="button" aria-pressed="false">★ Favorites</button>
+    <button id="clear" class="btn alt" type="button">Clear filters</button>
+  </div>
+  <p id="count" class="muted" aria-live="polite"></p>
+  <div id="list" class="grid"></div>
+</section>
+
+<section data-view="guide" hidden class="wrap"><div id="guide"></div></section>
+
+<section data-view="quiz" hidden class="wrap narrow"><h1>Diagnostic quiz</h1>
+  <p class="note">Results are educational suggestions based on the symptoms you report. This is not a real hardware scan or a guaranteed diagnosis.</p>
+  <div id="quiz" class="card"></div></section>
+
+<section data-view="about" hidden class="wrap narrow"><h1>About Hexadora</h1>
+  <p>Hexadora is a free learning resource for Grade 12 TVL-ICT students. It is a static website with no accounts, no tracking and no data uploads.</p>
+  <p>It is not an official product of Microsoft or any hardware maker, and it is not a replacement for your teacher or a qualified technician.</p>
+  <p><a class="btn" href="#/library">Open the library</a></p></section>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <nav aria-label="Footer"><a href="#/">Home</a> <a href="#/library">Troubleshooting</a> <a href="#/quiz">Quiz</a> <a href="#/about">About</a></nav>
+  <p><strong>Safety:</strong> Hexadora is for education only. Never open a power supply or touch exposed electrical parts. Back up data before risky steps. Ask a teacher or qualified technician when unsure.</p></div></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
