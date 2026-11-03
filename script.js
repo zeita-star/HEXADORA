@@ -180,6 +180,78 @@ G("highmem","Computer Uses Too Much Memory","Software","Intermediate","Memory us
 "Out of memory messages|Slow switching between apps|High memory in Task Manager","Too many programs|Memory leak in one app|Not enough RAM","Task Manager",
 "Open Task Manager and check the Memory column.|Save your work and close programs you do not need.|Close extra browser tabs.|Restart the computer.|If it happens often, tell your teacher that more RAM may be needed.",
 "Save your work before closing programs.","Memory use drops and apps respond normally.","Stop if memory is high with few programs open. Ask your teacher.","memory ram high usage out of memory slow"),
+G("sleep","Laptop Does Not Wake From Sleep","Hardware","Beginner","The laptop stayed black or did not respond after it went to sleep.",
+"Screen stays black|Lights on but no picture|Keys do nothing","Sleep or power setting|Low battery|Driver problem|Frozen system","Charger",
+"Connect the charger and wait one minute.|Press a key and move the touchpad or mouse.|Press the power button once, briefly.|If nothing happens, hold the power button until the laptop turns off, then start it again.|After it starts, check the power and sleep settings and install updates.",
+"Forcing a shutdown can lose unsaved work. Do it only after the other steps fail.","The laptop wakes normally from sleep.","Stop if it fails to wake repeatedly. Ask your teacher.","laptop sleep wake black screen"),
+G("extdrive","External Hard Drive Is Not Recognized","Hardware","Beginner","An external hard drive was plugged in but did not appear in File Explorer.",
+"No drive letter|Drive light off|Drive keeps disconnecting","Loose or damaged cable|Weak USB power|Drive needs a letter|Failing drive (possible)","Spare USB cable",
+"Check that the drive light is on and the cable is firm at both ends.|Try another USB port directly on the computer, not a hub.|Try another cable.|Open Disk Management and check whether the drive is listed. Do not format it.|Test the drive on another computer if allowed.",
+"Never format a drive you want to keep. Formatting erases its files.","The drive appears and its files open.","Stop if the drive is listed as RAW or makes clicking sounds. Data may be at risk, so ask your teacher.","external hard drive not recognized usb disk"),
+G("taskbar","Windows Taskbar Is Not Working","Operating Systems","Beginner","The taskbar did not respond, disappeared, or showed no icons.",
+"Taskbar frozen|Icons missing|Clock does not update","Windows Explorer glitch|Pending updates|Profile problem (possible)","None required",
+"Press Ctrl+Shift+Esc to open Task Manager.|Find Windows Explorer in the list and choose Restart.|Restart the computer.|Install pending Windows updates.|Sign out and sign in again.",
+"Do not run commands from the internet. Ask your teacher before using repair tools.","The taskbar responds and shows its icons.","Stop if it fails again after a restart. Ask your teacher.","taskbar frozen not working windows icons"),
+G("search","Windows Search Is Not Working","Operating Systems","Beginner","The Windows search box returned no results or did not open.",
+"No results|Search box blank|Search is very slow","Search index problem|Pending updates|Temporary glitch","None required",
+"Restart the computer.|Open Task Manager and restart Windows Explorer.|Check for Windows updates.|Open Settings, Troubleshoot, and run the Search and Indexing troubleshooter if it is listed.|Try searching again after the troubleshooter finishes.",
+"Rebuilding the search index can take a long time. Ask your teacher before doing it.","Searching for a known file shows results.","Stop if search still fails after the troubleshooter. Ask your teacher.","windows search not working results index"),
+G("tempprofile","Windows Shows a Temporary User Profile","Operating Systems","Intermediate","Windows signed in with a temporary profile, and the usual desktop and files were missing.",
+"Message about a temporary profile|Desktop looks new|Files missing","Profile loading error|Interrupted sign-out|Disk problem (possible)","Administrator contact",
+"Do not save any new files while using the temporary profile.|Sign out, restart the computer, and sign in again.|Check whether your files are back.|Tell your teacher or administrator if the message returns.|Let the administrator repair the profile.",
+"Files saved in a temporary profile are usually deleted at sign-out. Copy needed files to approved storage first.","You sign in to your normal profile with your files.","Stop and ask the administrator. Do not edit system settings yourself.","temporary profile user profile sign in files missing"),
+G("datetime","Computer Date and Time Are Incorrect","Operating Systems","Beginner","The computer showed the wrong date or time, or reset it after shutdown.",
+"Wrong clock|Time resets after restart|Certificate or website errors","Wrong time zone|Automatic time turned off|Weak clock battery (possible)","None required",
+"Open Settings, then Time and language, then Date and time.|Turn on Set time automatically and Set time zone automatically.|Choose Sync now.|Select the correct time zone.|Restart and check the clock again.",
+"Do not open the computer to look for the clock battery. Ask your teacher.","The correct date and time stay after a restart.","Stop if the time resets after every shutdown. Ask your teacher.","date time wrong clock time zone"),
+G("bootdevice","Windows Cannot Find the Boot Device","Operating Systems","Advanced","The computer showed a message that no boot device was found.",
+"No boot device message|Black screen with text|Restart loop","Wrong boot order|Drive not detected|Loose cable|Damaged boot files (possible)","Device manual",
+"Remove USB drives, discs, and other external devices.|Restart and open the BIOS setup using the key shown at startup.|Check whether the main drive is listed and set first in the boot order.|If the drive is missing, stop and ask your teacher to check the cables.|Try Startup Repair from recovery options if it is available.",
+"Do not reset or reinstall Windows without a backup and your teacher's approval.","Windows starts from the main drive.","Stop if the drive is not listed in the BIOS. Ask your teacher or technician.","boot device not found boot order bios no bootable"),
+G("opendl","Downloaded Files Cannot Be Opened","Software","Beginner","A downloaded file did not open or showed an error.",
+"Error when opening|Wrong program opens|File size looks wrong","Incomplete download|Missing program|Wrong file type|Unsafe file (possible)","None required",
+"Check the file name ending, such as .pdf or .zip.|Check that the download finished and the size looks right.|Open it with a program made for that file type.|Download it again from the original official source.|Run your approved antivirus scan if the file is unexpected.",
+"Never open .exe or unknown files from untrusted sources.","The file opens with the correct program.","Stop if the file asks you to enable macros or run it as administrator. Ask your teacher.","downloaded file cannot open zip pdf error"),
+G("corrupt","Files Become Corrupted or Cannot Be Accessed","Maintenance","Intermediate","A file would not open, showed an error, or seemed damaged.",
+"Error opening a file|Unreadable content|File shows size zero","Interrupted save|Failing drive (possible)|Virus|Unsafe removal of a drive","Backup copy",
+"Stop saving new files to that drive.|Copy the file to another approved location and try opening the copy.|Try opening it with another program.|Restore a copy from your backup.|Ask your teacher about a disk check.",
+"Writing to a failing drive can make damage worse. Stop using it for important files.","The file opens normally.","Stop if many files are affected. Ask your teacher before attempting recovery.","file corrupted cannot access damaged error"),
+G("ipconflict","IP Address Conflict or Incorrect IP Settings","Networking","Advanced","The computer showed an IP address conflict or got an unusual address and could not connect.",
+"IP conflict message|Limited connection|Cannot reach other devices","Two devices with one address|Wrong static address|DHCP problem","Network administrator contact",
+"Disconnect from the network and connect again.|Restart the computer.|Open the network adapter properties and check that Obtain an IP address automatically is selected, unless your teacher gave a fixed address.|Ask the network owner to restart the router or DHCP service.|Test the connection again.",
+"Do not change addresses on school or shared networks without permission.","The computer connects and websites open.","Stop if a fixed address is required. Ask the network administrator.","ip address conflict dhcp ip settings"),
+G("lan","Computer Cannot Access the Local Network","Networking","Intermediate","The computer reached the internet but could not see other devices on the local network.",
+"Other computers not visible|Shared items missing|Only the internet works","Different network|Network profile setting|Cable or switch problem","Network details from your teacher",
+"Confirm you are on the same network as the other devices.|Check the cable or Wi-Fi name with your teacher.|Restart the computer.|Check that other devices are on and connected.|Ask your teacher whether a firewall or network rule blocks access.",
+"Do not turn off security software to test.","The computer can see and reach local devices.","Stop if the network belongs to the school. Ask your teacher or network administrator.","local network cannot access lan other computers"),
+G("netdisc","Network Discovery Is Not Working","Networking","Intermediate","Other computers and devices did not appear in the Network list.",
+"Network list empty|Prompt about discovery|Devices missing","Network set as Public|Discovery turned off|Different network","Teacher permission",
+"Confirm all devices are on the same network.|Open network settings and check whether the connection is set to Private, if your teacher agrees.|Open Advanced sharing settings and check Network discovery.|Restart the computer.|Refresh the Network window.",
+"Turn on discovery only on trusted networks, and only with permission.","Other devices appear in the Network list.","Stop if the settings are locked. Ask your teacher.","network discovery sharing private public devices"),
+G("netprinter","Shared Network Printer Is Not Accessible","Networking","Intermediate","A shared network printer was listed but would not print or could not be reached.",
+"Printer shows offline|Access denied|Printer not found","Printer off|Wrong printer name|Permission problem|Network change","Printer name from your teacher",
+"Check the printer is on, has paper, and shows no error.|Confirm the computer is on the correct network.|Remove the printer and add it again using the name your teacher gave.|Print a test page.|Ask your teacher to check permissions.",
+"Do not bypass printer permissions or use another person's account.","The test page prints.","Stop if access is denied. Ask your teacher or administrator.","network printer shared offline access denied"),
+G("recycle","Recycle Bin Cannot Be Emptied","Maintenance","Beginner","The Recycle Bin would not empty or showed an error.",
+"Error when emptying|Files remain|Bin looks full","File still in use|Permission problem|Temporary glitch","None required",
+"Close programs that may use the files.|Restart the computer.|Try emptying the Recycle Bin again.|Delete a few files at a time to find the one causing the error.|Ask your teacher if permission is needed.",
+"Emptying the Recycle Bin removes files permanently. Check them first.","The Recycle Bin is empty.","Stop if one file cannot be removed. Ask your teacher.","recycle bin cannot empty delete error"),
+G("tempfiles","Temporary Files Cannot Be Removed","Maintenance","Beginner","The cleanup tool could not remove all temporary files.",
+"Some files remain|Cleanup error|Storage still full","Files in use|Needs restart|Permission problem","None required",
+"Open Settings, System, Storage, and choose Temporary files.|Select only items you understand, such as temporary files, and keep Downloads unchecked unless you have checked it.|Close open programs and restart.|Run the cleanup again.|Check the free space.",
+"Do not delete files you do not recognize. Downloads and Documents may hold your work.","Free space increases.","Stop if space stays low. Ask your teacher about storage use.","temporary files cleanup storage cannot delete"),
+G("phishing","Suspicious Email or Phishing Message Received","Maintenance","Beginner","An email or message asked the user to click a link or share personal information.",
+"Urgent or threatening message|Unknown sender|Link or attachment request","Phishing attempt|Spoofed sender|Compromised account (possible)","None required",
+"Do not click links or open attachments.|Check the sender address and any spelling errors.|Do not reply or share passwords or personal information.|Report the message to your teacher or email provider.|Delete it after reporting.",
+"If you already clicked or entered a password, tell your teacher and change the password from a clean device.","No links were opened and the message was reported.","Stop and tell your teacher at once if you shared any information.","phishing suspicious email spam scam link"),
+G("icons","Desktop Icons Are Missing","Operating Systems","Beginner","The desktop icons disappeared or were not shown.",
+"Empty desktop|Only wallpaper|Icons missing after update","Show desktop icons turned off|Explorer glitch|Different profile","None required",
+"Right-click an empty part of the desktop.|Choose View and make sure Show desktop icons is ticked.|Restart Windows Explorer from Task Manager.|Check the Desktop folder in File Explorer.|Sign out and sign in again.",
+"Do not delete files to fix this. Your files are likely still saved.","The desktop icons are shown.","Stop if the files are missing from the Desktop folder. Ask your teacher.","desktop icons missing disappeared windows"),
+G("explorer","File Explorer Is Not Responding","Operating Systems","Beginner","File Explorer froze or closed when folders were opened.",
+"Window frozen|Closes by itself|Slow folder opening","Unavailable network drive|Large folder|Windows glitch","None required",
+"Wait a minute for large folders.|Open Task Manager and restart Windows Explorer.|Disconnect network drives or external drives that are not needed.|Restart the computer.|Install pending Windows updates.",
+"Unsaved work in other programs can be lost if you force a restart.","File Explorer opens folders normally.","Stop if it keeps freezing. Ask your teacher.","file explorer not responding frozen folders crashes"),
 ];
 const ICON = { "Hardware":"M9 3h6v3h3v6h3v3h-3v3h-6v3H9v-3H6v-6H3V9h3z","Software":"M4 5h16v14H4zM4 9h16","Operating Systems":"M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z","Networking":"M12 18v-6M5 12a10 10 0 0114 0M8 15a6 6 0 018 0","Maintenance":"M14 6l4 4-9 9H5v-4z" };
 const icon = c => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="${ICON[c]}"/></svg>`;
@@ -201,9 +273,12 @@ const QUIZ = {
   files: ["What do you need?", [["Open a shared folder",["share"]],["Backup or restore",["backup","disk"]],["Update fails or cannot sign in",["winupdate","pin"]]]],
   screen: ["What is the problem?", [["Battery not charging",["battery","power"]],["Display or second monitor",["display","nodisplay"]],["Device warning or driver error",["driver"]]]],
   hw: ["Which sign?", [["Beeps at startup or missing memory",["beeps","ram_detect"]],["Drive not detected",["drive_detect"]],["Screen flicker or loud fans",["flicker","fans"]]]],
-  sw: ["Which issue?", [["Windows stuck or Start menu fails",["stuckload","startmenu"]],["Install failed or browser problem",["install","browserslow","redirect"]],["High CPU or memory use",["highcpu","highmem"]]]]
+  sw: ["Which issue?", [["Windows stuck or Start menu fails",["stuckload","startmenu"]],["Install failed or browser problem",["install","browserslow","redirect"]],["High CPU or memory use",["highcpu","highmem"]]]],
+  win2: ["Which problem?", [["Taskbar, search or desktop icons",["taskbar","search","icons"]],["File Explorer or temporary profile",["explorer","tempprofile"]],["Wrong date or time",["datetime"]],["No boot device found",["bootdevice"]]]],
+  net2: ["Which problem?", [["IP conflict or cannot reach the local network",["ipconflict","lan"]],["Network discovery or shared printer",["netdisc","netprinter"]],["Suspicious email or message",["phishing"]]]],
+  file2: ["Which problem?", [["Downloaded or damaged file",["opendl","corrupt"]],["Recycle Bin or temporary files",["recycle","tempfiles"]],["Laptop sleep or external drive",["sleep","extdrive"]]]]
 };
-const PROBLEMS = [["power","Computer does not power on"],["nodisplay","Computer powers on but there is no display"],["slow","Computer is unusually slow"],["overheat","Computer overheats"],["bsod","Computer shows a blue screen"],["internet","Computer cannot connect to the internet"],["input","Keyboard or mouse does not work"],["boot","Computer cannot boot into the operating system"],["freeze","Computer freezes or an app crashes"],["audio","Sound, microphone or webcam problem"],["wifi","Wi-Fi, wired or website problem"],["usb","USB, Bluetooth or touchpad problem"],["files","Sharing, backup, update or sign-in problem"],["screen","Battery, display or driver problem"],["hw","Beeps, drive, flicker or fan noise"],["sw","Windows, install, browser or CPU/memory problem"],["other","Other or unsure"]];
+const PROBLEMS = [["power","Computer does not power on"],["nodisplay","Computer powers on but there is no display"],["slow","Computer is unusually slow"],["overheat","Computer overheats"],["bsod","Computer shows a blue screen"],["internet","Computer cannot connect to the internet"],["input","Keyboard or mouse does not work"],["boot","Computer cannot boot into the operating system"],["freeze","Computer freezes or an app crashes"],["audio","Sound, microphone or webcam problem"],["wifi","Wi-Fi, wired or website problem"],["usb","USB, Bluetooth or touchpad problem"],["files","Sharing, backup, update or sign-in problem"],["screen","Battery, display or driver problem"],["hw","Beeps, drive, flicker or fan noise"],["sw","Windows, install, browser or CPU/memory problem"],["win2","Taskbar, search, icons, Explorer, profile or clock problem"],["net2","IP, local network, discovery, shared printer or phishing"],["file2","Downloads, corrupted files, Recycle Bin, temp files, sleep or external drive"],["other","Other or unsure"]];
 
 /* ===== HELPERS ===== */
 const $ = s => document.querySelector(s);
@@ -284,6 +359,7 @@ function stepReduce(s, a, n) {
   switch (a) {
     case "did": if (!s.done.includes(s.i)) s.done.push(s.i); s.stage = "result"; break;
     case "cant": s.stage = "cant"; break;
+    case "unsure": s.stage = "unsure"; break;
     case "again": s.stage = "do"; break;
     case "fixed": s.solved = true; break;
     case "help": s.end = true; s.help = true; break;
@@ -300,14 +376,15 @@ function stepper(g, id) {
   const draw = focus => {
     prog[id] = { i: s.i, done: s.done, solved: s.solved, end: s.end, help: s.help }; store.set("hx-prog", prog);
     let h = `<progress max="${n}" value="${s.done.length}" aria-label="Steps confirmed"></progress><p class="muted small">${s.done.length} of ${n} steps confirmed. Confirming a step means you did it yourself.</p>`;
-    if (s.solved) h += `<div class="stepbox"><h3>Problem solved</h3><p>Good work. Check one more time: ${g.ver}</p></div><div class="sbtns">${B("prev", "Back to last step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
-    else if (s.end) h += `<div class="stepbox"><h3>${s.help ? "Stop and ask for help" : "All steps finished"}</h3><p>${s.help ? "" : "The problem is still there. "}${g.stop}</p></div><div class="sbtns">${B("prev", "Previous step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
+    if (s.solved) h += `<div class="stepbox"><h3>Problem solved</h3><p>Good work. Summary: you confirmed ${s.done.length} of ${n} steps. Check one more time: ${g.ver}</p></div><div class="sbtns">${B("prev", "Back to last step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
+    else if (s.end) h += `<div class="stepbox"><h3>${s.help ? "Stop and ask for help" : "All steps finished"}</h3><p>${s.help ? "" : "The problem is still there. "}Summary: you confirmed ${s.done.length} of ${n} steps. ${g.stop}</p></div><div class="sbtns">${B("prev", "Previous step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
     else {
       h += `<div class="stepbox"><p class="stepno">Step ${s.i + 1} of ${n}</p><p class="steptext">${g.steps[s.i]}</p>`;
-      if (s.stage === "do") h += `<p><strong>Have you completed this step?</strong></p><div class="sbtns">${B("did", "Yes, I completed it")}${B("cant", "I cannot do this step", "alt")}</div>`;
-      else if (s.stage === "result") h += `<p><strong>Is the problem fixed now?</strong></p><div class="sbtns">${B("fixed", "Yes, problem solved")}${B("notfixed", s.i >= n - 1 ? "No, it is still there" : "No, show the next step", "alt")}${B("again", "Back to this step", "alt")}</div>`;
+      if (s.stage === "do") h += `<p><strong>Have you completed this step?</strong></p><div class="sbtns">${B("did", "I completed this step")}${B("cant", "I couldn't complete this step", "alt")}</div>`;
+      else if (s.stage === "result") h += `<p><strong>Is the problem fixed now?</strong></p><div class="sbtns">${B("fixed", "Yes, problem solved")}${B("notfixed", s.i >= n - 1 ? "No, it is still there" : "No, continue troubleshooting", "alt")}${B("unsure", "I am not sure", "alt")}${B("again", "Back to this step", "alt")}</div>`;
+      else if (s.stage === "unsure") h += `<p class="note">Compare your computer with the symptoms listed on this page. If you still see any of them, the problem is not solved yet. A teacher can also check with you.</p><div class="sbtns">${B("fixed", "Yes, problem solved")}${B("notfixed", "No, continue troubleshooting", "alt")}${B("help", "Ask a teacher or technician", "alt")}</div>`;
       else h += `<p class="note">That is okay. Some steps need permission or tools. Ask your teacher or a technician about this one. You may skip it, but the problem may remain.</p><div class="sbtns">${B("skip", s.i >= n - 1 ? "Skip and finish" : "Skip to next step")}${B("help", "Stop and get help", "alt")}${B("again", "Try this step again", "alt")}</div>`;
-      h += `</div><div class="sbtns">${s.i > 0 ? B("prev", "Previous step", "alt") : ""}${B("restart", "Restart guide", "alt")}</div>`;
+      h += `</div><div class="sbtns">${s.i > 0 ? B("prev", "Previous step", "alt") : ""}${s.stage === "cant" ? "" : B("help", "Ask teacher or technician", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
     }
     box.innerHTML = h; if (focus) { const b = box.querySelector(".stepbox [data-a]"); if (b) b.focus({ preventScroll: true }); }
   };
