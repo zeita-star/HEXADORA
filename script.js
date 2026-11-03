@@ -132,6 +132,54 @@ G("backup","File Backup and Restore Problems","Maintenance","Intermediate","Back
 "Backup error|Files missing after restore|Drive not found","Backup drive full|Drive disconnected|Wrong location|Permissions","External drive or approved storage",
 "Check the backup drive is connected and has free space.|Confirm the backup location.|Run the backup again and read the message.|Test restoring one small file first.|Keep a second copy of important files.",
 "Do not overwrite files before checking your backup works.","A test file restores correctly.","Stop if the backup drive is not recognized. Ask your teacher.","backup restore files copy recovery"),
+G("beeps","Computer Produces Beeping Sounds at Startup","Hardware","Intermediate","The computer beeped at startup and did not finish starting. Beep patterns differ by maker, so the manual is the best guide.",
+"Repeated beeps|No picture|Computer will not finish starting","Loose RAM or card|Faulty RAM|Keyboard or device fault|Maker-specific error (possible)","Device manual",
+"Count the beeps and note which are long and which are short.|Look up the pattern in the manual or the maker's support page.|Unplug extra USB devices and restart.|If your teacher approves, shut down and unplug, then check that the RAM is seated.|Restart and listen again.",
+"Unplug the computer and wait before touching any internal part. Never open the power supply.","The computer starts normally with no beeps.","Stop if the beeps continue after the simple checks. Tell your teacher the beep pattern.","beep beeping startup post sound"),
+G("ram_detect","RAM Is Not Detected Properly","Hardware","Intermediate","The computer reported less memory than was installed, or did not start after RAM was added.",
+"Less RAM shown than installed|Beeps|Random crashes","Loose module|Incompatible or faulty RAM|Slot problem","Anti-static wrist strap, if available",
+"Check how much memory the system reports in Settings, System, About.|Shut down, unplug, and wait before touching any part. Ask your teacher to supervise.|Reseat each RAM module until both clips click.|Test one module at a time in the same slot.|Restart and check the reported memory again.",
+"Ground yourself, unplug first, and hold RAM by the edges. Ask a teacher to supervise internal work.","The system shows the full installed memory.","Stop if the memory is still wrong after testing each module. A module or slot may be faulty.","ram memory not detected missing"),
+G("drive_detect","Hard Drive or SSD Is Not Detected","Hardware","Intermediate","The BIOS or Windows did not show the hard drive or SSD.",
+"No operating system found|Drive missing in BIOS|Drive missing in File Explorer","Loose data or power cable|Wrong BIOS setting|Failing drive (possible)","Spare cable, if allowed",
+"Back up important files first if any part of the drive still works.|Restart and open the BIOS setup using the key shown at startup.|Check whether the drive is listed there.|With teacher supervision, power off, unplug, and check the drive cables.|Test the drive in another computer if allowed.",
+"A failing drive can lose data. Stop heavy use and ask for help early. Unplug before checking cables.","The drive appears in the BIOS and in File Explorer.","Stop if the drive is not listed anywhere. Data may be at risk, so ask your teacher.","ssd hard drive not detected bios missing disk"),
+G("flicker","Monitor Screen Flickers","Hardware","Beginner","The screen flickered or flashed while the computer was running.",
+"Flashing picture|Lines or waves|Flicker only in some apps","Loose cable|Wrong refresh rate|Graphics driver problem|Failing monitor or cable (possible)","Spare video cable",
+"Check whether the flicker also happens in the BIOS or startup screen.|Reseat the video cable at both ends.|Try another cable or another monitor.|Open display settings and choose the recommended refresh rate.|Update the graphics driver from the official maker.",
+"Turn devices off before changing cables.","The picture stays steady for several minutes.","Stop if the flicker continues with a different cable and monitor. Ask a technician.","flicker flashing screen monitor refresh rate"),
+G("fans","Computer Fans Make Unusual Noise","Hardware","Beginner","The computer fans were unusually loud, rattled, or squealed.",
+"Loud fan|Rattling or grinding|Fan speed rises and falls","Dust|Heavy program use|Loose object or screw|Failing fan (possible)","Flashlight",
+"Close heavy programs and listen for changes.|Move the computer to a hard, flat surface with clear vents.|Power off and unplug, then look at the vents with a flashlight for dust.|Gently brush dust from the vent openings.|Restart and listen again.",
+"Do not put objects into a fan. Never open the power supply. Unplug before cleaning.","The fans are quiet under normal use.","Stop if you hear grinding or smell burning. Power off and ask your teacher.","fan noise loud grinding rattle"),
+G("stuckload","Windows Stuck on the Loading Screen","Operating Systems","Intermediate","Windows stayed on the logo or the spinning dots and did not reach the sign-in screen.",
+"Spinning dots for a long time|Restart loop|Black screen after logo","Interrupted update|Corrupted system files|Faulty drive|New hardware conflict","Windows recovery options",
+"Wait at least 15 minutes. Updates can take a long time.|Disconnect USB devices that are not needed.|Restart the computer once.|Open the Windows recovery options when shown and choose Startup Repair.|If Startup Repair fails, ask your teacher before using Reset or Restore.",
+"Resetting Windows can erase files. Back up first if you can, and ask your teacher before resetting.","Windows reaches the sign-in screen and the desktop.","Stop if recovery tools fail. Ask your teacher or a technician.","windows loading screen stuck spinning logo boot"),
+G("startmenu","Windows Start Menu Is Not Responding","Operating Systems","Beginner","The Start menu did not open or did not respond to clicks.",
+"Start button does nothing|Menu opens then closes|Search box fails","Temporary Windows glitch|Pending updates|Corrupted user profile (possible)","None required",
+"Press the Windows key on the keyboard to see if the menu opens.|Open Task Manager with Ctrl+Shift+Esc, find Windows Explorer, and choose Restart.|Restart the computer.|Install pending Windows updates.|Sign out and sign in again.",
+"Do not run commands from the internet. Ask your teacher before using system repair tools.","The Start menu opens and apps launch from it.","Stop if the problem returns after a restart. Ask your teacher.","start menu not responding windows button"),
+G("install","Software Installation Failed","Software","Beginner","An installer showed an error or stopped before the program was installed.",
+"Error message|Installer closes|Program missing after install","Not enough storage|Missing permission|Damaged download|Incompatible version","Approved installer",
+"Read the error message and write it down.|Check free storage.|Confirm the program supports your version of Windows.|Download the installer again from the official site.|Ask your teacher for administrator permission if requested.",
+"Install only software your teacher approves, from official sources. Do not disable security software.","The program opens after installation.","Stop if you are asked for an administrator password you were not given. Ask your teacher.","install installer setup failed error software"),
+G("browserslow","Web Browser Runs Slowly","Software","Beginner","The web browser loaded pages slowly or lagged while scrolling.",
+"Slow page loading|Browser freezes|Many tabs open","Too many tabs|Heavy extensions|Full cache|Slow internet","None required",
+"Test another site, and another browser if you have one.|Close tabs you do not need.|Disable extensions you do not recognize.|Update the browser from its official menu.|Clear the browser cache if your teacher agrees.",
+"Clearing browsing data may remove saved sign-ins.","Pages load at a normal speed.","Stop if all programs and websites are slow. Use the network guides or ask your teacher.","browser slow chrome edge firefox tabs"),
+G("redirect","Browser Redirects to Unknown Websites","Software","Intermediate","The browser sent the user to unknown websites or showed unwanted pop-ups.",
+"Unexpected sites open|Changed home page|Pop-ups","Unwanted extension|Malicious link|Changed browser settings","Approved antivirus",
+"Close the unknown pages. Do not enter any information.|Check the browser extensions and remove ones you do not recognize.|Check the home page and search engine settings.|Run your approved antivirus scan.|Update the browser and system.",
+"Do not click pop-ups, enter passwords, or call numbers shown on them.","The browser opens only the sites you choose.","Stop if the redirects continue. Tell your teacher and change passwords from a clean device.","redirect browser popup unwanted sites malware"),
+G("highcpu","Computer Uses Too Much CPU","Software","Intermediate","The CPU stayed at a high percentage, and the computer ran slowly or got hot.",
+"Fan always loud|Slow response|High CPU in Task Manager","Heavy program|Background update|Malware (possible)|Too many startup programs","Task Manager",
+"Open Task Manager with Ctrl+Shift+Esc and sort by CPU.|Note which program uses the most CPU.|Close that program normally if you do not need it.|Wait for updates to finish, then restart.|Run your approved antivirus scan if the program is unfamiliar.",
+"Do not end programs you do not recognize without asking your teacher.","CPU use drops to a normal level when idle.","Stop if an unknown program keeps returning. Ask your teacher.","cpu high usage task manager slow hot"),
+G("highmem","Computer Uses Too Much Memory","Software","Intermediate","Memory use stayed high, and programs slowed down or closed.",
+"Out of memory messages|Slow switching between apps|High memory in Task Manager","Too many programs|Memory leak in one app|Not enough RAM","Task Manager",
+"Open Task Manager and check the Memory column.|Save your work and close programs you do not need.|Close extra browser tabs.|Restart the computer.|If it happens often, tell your teacher that more RAM may be needed.",
+"Save your work before closing programs.","Memory use drops and apps respond normally.","Stop if memory is high with few programs open. Ask your teacher.","memory ram high usage out of memory slow"),
 ];
 const ICON = { "Hardware":"M9 3h6v3h3v6h3v3h-3v3h-6v3H9v-3H6v-6H3V9h3z","Software":"M4 5h16v14H4zM4 9h16","Operating Systems":"M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z","Networking":"M12 18v-6M5 12a10 10 0 0114 0M8 15a6 6 0 018 0","Maintenance":"M14 6l4 4-9 9H5v-4z" };
 const icon = c => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="${ICON[c]}"/></svg>`;
@@ -151,9 +199,11 @@ const QUIZ = {
   wifi: ["What is the connection like?", [["Wi-Fi weak or drops",["wifiweak","internet"]],["Cable plugged in but no network",["ethernet","internet"]],["Some websites will not open",["dns","internet"]]]],
   usb: ["Which device?", [["USB drive or device",["usb","driver"]],["Bluetooth device",["bluetooth"]],["Laptop touchpad",["touchpad","input"]]]],
   files: ["What do you need?", [["Open a shared folder",["share"]],["Backup or restore",["backup","disk"]],["Update fails or cannot sign in",["winupdate","pin"]]]],
-  screen: ["What is the problem?", [["Battery not charging",["battery","power"]],["Display or second monitor",["display","nodisplay"]],["Device warning or driver error",["driver"]]]]
+  screen: ["What is the problem?", [["Battery not charging",["battery","power"]],["Display or second monitor",["display","nodisplay"]],["Device warning or driver error",["driver"]]]],
+  hw: ["Which sign?", [["Beeps at startup or missing memory",["beeps","ram_detect"]],["Drive not detected",["drive_detect"]],["Screen flicker or loud fans",["flicker","fans"]]]],
+  sw: ["Which issue?", [["Windows stuck or Start menu fails",["stuckload","startmenu"]],["Install failed or browser problem",["install","browserslow","redirect"]],["High CPU or memory use",["highcpu","highmem"]]]]
 };
-const PROBLEMS = [["power","Computer does not power on"],["nodisplay","Computer powers on but there is no display"],["slow","Computer is unusually slow"],["overheat","Computer overheats"],["bsod","Computer shows a blue screen"],["internet","Computer cannot connect to the internet"],["input","Keyboard or mouse does not work"],["boot","Computer cannot boot into the operating system"],["freeze","Computer freezes or an app crashes"],["audio","Sound, microphone or webcam problem"],["wifi","Wi-Fi, wired or website problem"],["usb","USB, Bluetooth or touchpad problem"],["files","Sharing, backup, update or sign-in problem"],["screen","Battery, display or driver problem"],["other","Other or unsure"]];
+const PROBLEMS = [["power","Computer does not power on"],["nodisplay","Computer powers on but there is no display"],["slow","Computer is unusually slow"],["overheat","Computer overheats"],["bsod","Computer shows a blue screen"],["internet","Computer cannot connect to the internet"],["input","Keyboard or mouse does not work"],["boot","Computer cannot boot into the operating system"],["freeze","Computer freezes or an app crashes"],["audio","Sound, microphone or webcam problem"],["wifi","Wi-Fi, wired or website problem"],["usb","USB, Bluetooth or touchpad problem"],["files","Sharing, backup, update or sign-in problem"],["screen","Battery, display or driver problem"],["hw","Beeps, drive, flicker or fan noise"],["sw","Windows, install, browser or CPU/memory problem"],["other","Other or unsure"]];
 
 /* ===== HELPERS ===== */
 const $ = s => document.querySelector(s);
@@ -228,6 +278,42 @@ function renderList() {
 }
 
 /* ===== GUIDE ===== */
+/* ===== ONE-STEP-AT-A-TIME TROUBLESHOOTING ===== */
+function stepReduce(s, a, n) {
+  s = { ...s, done: [...s.done] };
+  switch (a) {
+    case "did": if (!s.done.includes(s.i)) s.done.push(s.i); s.stage = "result"; break;
+    case "cant": s.stage = "cant"; break;
+    case "again": s.stage = "do"; break;
+    case "fixed": s.solved = true; break;
+    case "help": s.end = true; s.help = true; break;
+    case "notfixed": case "skip": if (s.i >= n - 1) { s.end = true; s.help = false; } else { s.i++; s.stage = "do"; } break;
+    case "prev": if (s.solved) { s.solved = false; s.stage = "result"; } else if (s.end) { s.end = false; s.help = false; s.stage = "do"; } else if (s.i > 0) { s.i--; s.stage = "do"; } break;
+    case "restart": return { i: 0, stage: "do", done: [], solved: false, end: false, help: false };
+  }
+  return s;
+}
+function stepper(g, id) {
+  const box = $("#stepper"), n = g.steps.length, B = (a, t, c = "") => `<button type="button" class="btn ${c}" data-a="${a}">${t}</button>`;
+  const old = prog[id]; let s = old && !Array.isArray(old) ? { stage: "do", help: false, ...old } : { i: 0, stage: "do", done: [], solved: false, end: false, help: false };
+  s.i = Math.min(Math.max(+s.i || 0, 0), n - 1);
+  const draw = focus => {
+    prog[id] = { i: s.i, done: s.done, solved: s.solved, end: s.end, help: s.help }; store.set("hx-prog", prog);
+    let h = `<progress max="${n}" value="${s.done.length}" aria-label="Steps confirmed"></progress><p class="muted small">${s.done.length} of ${n} steps confirmed. Confirming a step means you did it yourself.</p>`;
+    if (s.solved) h += `<div class="stepbox"><h3>Problem solved</h3><p>Good work. Check one more time: ${g.ver}</p></div><div class="sbtns">${B("prev", "Back to last step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
+    else if (s.end) h += `<div class="stepbox"><h3>${s.help ? "Stop and ask for help" : "All steps finished"}</h3><p>${s.help ? "" : "The problem is still there. "}${g.stop}</p></div><div class="sbtns">${B("prev", "Previous step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
+    else {
+      h += `<div class="stepbox"><p class="stepno">Step ${s.i + 1} of ${n}</p><p class="steptext">${g.steps[s.i]}</p>`;
+      if (s.stage === "do") h += `<p><strong>Have you completed this step?</strong></p><div class="sbtns">${B("did", "Yes, I completed it")}${B("cant", "I cannot do this step", "alt")}</div>`;
+      else if (s.stage === "result") h += `<p><strong>Is the problem fixed now?</strong></p><div class="sbtns">${B("fixed", "Yes, problem solved")}${B("notfixed", s.i >= n - 1 ? "No, it is still there" : "No, show the next step", "alt")}${B("again", "Back to this step", "alt")}</div>`;
+      else h += `<p class="note">That is okay. Some steps need permission or tools. Ask your teacher or a technician about this one. You may skip it, but the problem may remain.</p><div class="sbtns">${B("skip", s.i >= n - 1 ? "Skip and finish" : "Skip to next step")}${B("help", "Stop and get help", "alt")}${B("again", "Try this step again", "alt")}</div>`;
+      h += `</div><div class="sbtns">${s.i > 0 ? B("prev", "Previous step", "alt") : ""}${B("restart", "Restart guide", "alt")}</div>`;
+    }
+    box.innerHTML = h; if (focus) { const b = box.querySelector(".stepbox [data-a]"); if (b) b.focus({ preventScroll: true }); }
+  };
+  box.onclick = e => { const b = e.target.closest("[data-a]"); if (!b) return; s = stepReduce(s, b.dataset.a, n); draw(true); if (b.dataset.a === "restart") toast("Guide restarted"); };
+  draw(false);
+}
 function renderGuide(id) {
   const g = byId(id), box = $("#guide");
   if (!g) { box.innerHTML = `<div class="empty"><p class="bad">Guide not found.</p><a class="btn" href="#/library">Back to library</a></div>`; return; }
@@ -240,15 +326,10 @@ function renderGuide(id) {
   <div class="warn" role="note"><span class="wi" aria-hidden="true">⚠</span><span><strong>Warning:</strong> ${g.warn}</span></div>
   <div class="gcols"><aside class="gside card"><h2>Symptoms you may observe</h2><ul>${li(g.sy)}</ul>
   <h2>Possible causes</h2><p class="muted">These are possibilities, not confirmed diagnoses.</p><ul>${li(g.ca)}</ul></aside><div class="gmain">
-  <h2>Troubleshooting steps</h2><progress id="pg" max="${g.steps.length}" value="${done.length}"></progress><p id="pgTxt" aria-live="polite"></p>
-  <ol class="steps">${g.steps.map((s, i) => `<li><label><input type="checkbox" data-i="${i}" ${done.includes(i) ? "checked" : ""}><span>${s}</span></label></li>`).join("")}</ol>
-  <button class="btn alt no-print" id="resetBtn">Reset progress</button>
+  <h2>Troubleshooting steps</h2><div id="stepper" aria-live="polite"></div><ol class="print-only">${g.steps.map(x => `<li>${x}</li>`).join("")}</ol>
   <h2>How to verify it is fixed</h2><p class="good">${g.ver}</p>
   <h2>When to stop and ask for help</h2><p class="note">${g.stop}</p></div></div>`;
-  const upd = () => { const n = $$(".steps input:checked").length; $("#pg").value = n; $("#pgTxt").textContent = `${n} of ${g.steps.length} steps complete`; };
-  upd();
-  $$(".steps input").forEach(cb => cb.addEventListener("change", () => { prog[id] = $$(".steps input:checked").map(x => +x.dataset.i); store.set("hx-prog", prog); upd(); }));
-  $("#resetBtn").onclick = () => { prog[id] = []; store.set("hx-prog", prog); $$(".steps input").forEach(c => c.checked = false); upd(); toast("Progress reset"); };
+  stepper(g, id);
   $("#printBtn").onclick = () => window.print();
   $("#favBtn").onclick = () => { favs = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id]; store.set("hx-favs", favs); renderGuide(id); toast(favs.includes(id) ? "Added to favorites" : "Removed from favorites"); };
 }

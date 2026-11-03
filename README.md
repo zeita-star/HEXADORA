@@ -53,3 +53,13 @@ The assistant needs a small backend, because an API key can never go in a GitHub
 
 ## Animations
 Page changes, cards, buttons, the logo and scroll reveals use CSS animations. Devices set to "reduce motion" get no animation. Back and forward buttons restore your scroll position.
+
+## Step-by-step guides
+Every guide shows one instruction at a time. The student confirms they did it, then answers whether the problem is fixed. Confirmed steps are counted only as "confirmed", never as proof. "I cannot do this step" offers skip or help. Progress is saved in the visitor's browser. The full list is hidden on screen and appears only when printing.
+
+## Assistant: deployment errors
+- Page says "not set up": `AI_ENDPOINT` in `script.js` is still empty. Paste the Worker URL and re-upload `script.js`.
+- "Could not reach the assistant": the Worker URL is wrong, or `ALLOWED_ORIGIN` in `wrangler.toml` does not exactly match `https://zeita-star.github.io` (no path, no trailing slash). Redeploy after editing.
+- "Unavailable" (502/503): the secret `ANTHROPIC_API_KEY` is missing or the API account has no credit. Check with `npx wrangler tail`.
+- "Too many questions" (429): the per-visitor hourly limit was reached.
+- The model name is set by `MODEL` in `wrangler.toml` (default `claude-haiku-5-5`). Confirm it appears in your Anthropic console model list before relying on it.

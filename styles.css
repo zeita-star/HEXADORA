@@ -106,3 +106,10 @@ a.card:hover{box-shadow:0 8px 22px rgba(38,59,170,.2)}#nav a{transition:border-c
 .chat-in{display:flex;gap:.6rem;align-items:flex-end}textarea{flex:1;font:inherit;padding:.65rem .8rem;border:2px solid var(--color-primary);border-radius:10px;background:var(--surface);color:var(--text);min-height:44px;resize:vertical}
 @media(prefers-reduced-motion:reduce){.js .reveal:not(.in){opacity:1;transform:none}.hero-art,.logo,.enter,.enter *{animation:none!important}}
 @media print{.warn{background:#fff;color:#000;border:2px solid #000}.gcols{display:block}}
+
+/* v4: step-by-step */
+.stepbox{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--color-primary);border-radius:var(--r);padding:1rem 1.1rem;margin:.75rem 0}
+.stepno{margin:0;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--link);font-size:.9rem}.steptext{font-size:1.2rem;margin:.4rem 0 .9rem}
+.sbtns{display:flex;flex-wrap:wrap;gap:.6rem;margin:.6rem 0}.stepbox h3{margin:0 0 .4rem}
+.print-only{display:none}@media print{.print-only{display:block}#stepper{display:none}}
+@media(max-width:480px){.sbtns .btn{flex:1 1 100%;text-align:center}}
