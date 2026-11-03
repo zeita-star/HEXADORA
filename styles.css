@@ -82,3 +82,27 @@ h1,h2,h3,p,li,.card{overflow-wrap:anywhere}
 .opt{min-height:48px}.opt input{width:24px;height:24px}
 @media(max-width:480px){.wrap{padding-inline:1rem}.tools{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.actions .btn,.row .btn{flex:1 1 100%;text-align:center}}
 @media(max-width:360px){body{font-size:1rem}.brand{font-size:1.1rem}}
+
+/* v3: logo, warning, guide layout */
+.hero-art{background:var(--color-primary);color:var(--color-secondary);border-radius:28px;padding:16%;aspect-ratio:1;animation:logoIn .7s cubic-bezier(.2,.7,.2,1) both,drift 7s ease-in-out .8s infinite}
+.logo{transition:transform .3s;animation:logoIn .6s cubic-bezier(.2,.7,.2,1) both}.brand:hover .logo{transform:scale(1.1)}
+@keyframes logoIn{from{opacity:0;transform:scale(.85) rotate(-10deg)}}@keyframes drift{50%{transform:translateY(-5px)}}
+.warn{display:flex;gap:.8rem;align-items:flex-start;background:#B3261E;color:#fff;border:0;border-radius:12px;padding:1rem 1.1rem;margin:1.5rem 0}.warn::before{content:none}
+.warn .wi{font-size:1.7rem;line-height:1;flex:none}
+.row{gap:.75rem;margin:1.25rem 0}
+.gcols{display:grid;gap:1.5rem;grid-template-columns:minmax(0,1fr)}.gside h2:first-child,.gmain h2:first-child{margin-top:0}.gmain p,.lead{max-width:70ch}
+@media(min-width:960px){.gcols{grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:2rem}.gside{grid-column:2;grid-row:1;position:sticky;top:5.5rem;align-self:start}.gmain{grid-column:1;grid-row:1}}
+/* v3: animation */
+.enter{animation:enterIn .45s cubic-bezier(.2,.7,.2,1) both}
+@keyframes enterIn{from{opacity:0;transform:translateY(14px) scale(.992)}}
+.enter .grid>*,.enter .gside,.enter .steps li,.enter .hero>*{animation:enterIn .5s cubic-bezier(.2,.7,.2,1) both}
+.enter .grid>:nth-child(2),.enter .steps li:nth-child(2){animation-delay:.05s}.enter .grid>:nth-child(3),.enter .steps li:nth-child(3){animation-delay:.1s}.enter .grid>:nth-child(4),.enter .steps li:nth-child(4){animation-delay:.15s}.enter .grid>:nth-child(n+5),.enter .steps li:nth-child(n+5){animation-delay:.2s}
+.js .reveal:not(.in){opacity:0;transform:translateY(16px)}.reveal{transition:opacity .6s,transform .6s}
+.btn{transition:transform .2s,opacity .2s,box-shadow .2s}.btn:hover{box-shadow:0 6px 16px rgba(38,59,170,.28)}.btn:active{transform:scale(.97)}
+a.card:hover{box-shadow:0 8px 22px rgba(38,59,170,.2)}#nav a{transition:border-color .2s}.icon-btn{transition:background .2s,transform .2s}.icon-btn:active{transform:scale(.94)}
+/* v3: chat */
+.chat{display:flex;flex-direction:column;gap:.75rem}#chatLog{display:flex;flex-direction:column;gap:.6rem;max-height:55vh;min-height:8rem;overflow-y:auto}
+.msg{max-width:88%;padding:.65rem .9rem;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere}.msg.bot{background:var(--bg);border:1px solid var(--line);align-self:flex-start}.msg.user{background:var(--color-primary);color:var(--color-secondary);align-self:flex-end}
+.chat-in{display:flex;gap:.6rem;align-items:flex-end}textarea{flex:1;font:inherit;padding:.65rem .8rem;border:2px solid var(--color-primary);border-radius:10px;background:var(--surface);color:var(--text);min-height:44px;resize:vertical}
+@media(prefers-reduced-motion:reduce){.js .reveal:not(.in){opacity:1;transform:none}.hero-art,.logo,.enter,.enter *{animation:none!important}}
+@media print{.warn{background:#fff;color:#000;border:2px solid #000}.gcols{display:block}}

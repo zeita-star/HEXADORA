@@ -36,3 +36,20 @@ All links are `#/...` hash links and all files use relative paths, so the site w
 
 ## Notes
 Hexadora never scans a device or collects data. Favorites, progress and theme are stored only in the visitor's own browser.
+
+## HEXADORA Assistant (AI) setup
+The assistant needs a small backend, because an API key can never go in a GitHub Pages site. The site works fully without it; until configured, the Assistant page says it is not set up.
+
+- **Backend:** `worker/worker.js`, a Cloudflare Worker. The site sends the student's messages plus the 3 most relevant guides; the Worker adds safety rules and calls the Anthropic API.
+- **Costs (check current prices before enabling):** Cloudflare Workers has a free plan with daily limits. The Anthropic API is pay-per-use and needs a key from console.anthropic.com with billing turned on. Set a monthly spend limit there. Nothing is purchased by these files.
+- **Steps:**
+  1. Create free Cloudflare and Anthropic accounts (you or your teacher).
+  2. Edit `worker/wrangler.toml`: set `ALLOWED_ORIGIN` to your site origin, e.g. `https://YOUR-NAME.github.io` (no path).
+  3. In the `worker` folder run `npx wrangler login`, then `npx wrangler secret put ANTHROPIC_API_KEY` and paste the key, then `npx wrangler deploy`.
+  4. Copy the Worker URL printed at the end into `AI_ENDPOINT` at the top of the assistant section of `script.js`, then upload `script.js` again.
+- **Security built in:** key stored only as a Worker secret; only your site origin is allowed; input length and size limits; about 20 questions per visitor per hour (best effort, so also add a Cloudflare rate-limiting rule); upstream errors are not shown to users; messages are not stored or logged by this code.
+- **Privacy:** messages go to Cloudflare and the AI provider, and the Assistant page warns students not to type personal information. Check your school's rules first.
+- **Never upload** `.dev.vars`, `.env`, or the `backup-before-v3` folder (originals before this upgrade).
+
+## Animations
+Page changes, cards, buttons, the logo and scroll reveals use CSS animations. Devices set to "reduce motion" get no animation. Back and forward buttons restore your scroll position.
