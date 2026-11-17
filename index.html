@@ -33,7 +33,6 @@
     <a href="#/" data-nav="home">Home</a>
     <a href="#/library" data-nav="library">Troubleshooting</a>
     <a href="#/quiz" data-nav="quiz">Diagnostic Quiz</a>
-    <a href="#/assistant" data-nav="assistant">Assistant</a>
     <a href="#/about" data-nav="about">About</a>
     <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch to dark theme">🌙</button>
   </nav>
@@ -79,6 +78,7 @@
   </div>
   <p id="count" class="muted" aria-live="polite"></p>
   <div id="list" class="grid"></div>
+  <div class="row"><button id="more" class="btn alt" type="button" hidden>Show more guides</button></div>
 </section>
 
 <section data-view="guide" hidden class="wrap"><div id="guide"></div></section>
@@ -87,12 +87,6 @@
   <p class="note">Results are educational suggestions based on the symptoms you report. This is not a real hardware scan or a guaranteed diagnosis.</p>
   <div id="quiz" class="card"></div></section>
 
-<section data-view="assistant" hidden class="wrap narrow"><h1>HEXADORA Assistant</h1>
-  <p class="note">An AI helper for learning. Its suggestions are possibilities, not confirmed diagnoses, and it cannot scan your device. Your messages are sent to an AI provider, so do not type names, passwords or other personal information.</p>
-  <div class="card chat"><div id="chatLog" role="log" aria-live="polite" aria-label="Conversation"></div><p id="chatStatus" class="muted small" aria-live="polite"></p>
-    <div class="chat-in"><label class="sr" for="chatText">Describe your computer problem</label><textarea id="chatText" rows="2" maxlength="600" placeholder="Example: My computer turns on, but the monitor says no signal."></textarea><button id="chatSend" class="btn" type="button">Send</button></div>
-    <div><button id="chatNew" class="btn alt" type="button">New conversation</button></div></div></section>
-
 <section data-view="about" hidden class="wrap narrow"><h1>About Hexadora</h1>
   <p>Hexadora is a free learning resource for Grade 12 TVL-ICT students. It is a static website with no accounts, no tracking and no data uploads.</p>
   <p>It is not an official product of Microsoft or any hardware maker, and it is not a replacement for your teacher or a qualified technician.</p>
@@ -100,7 +94,7 @@
 </main>
 
 <footer class="site-footer"><div class="wrap">
-  <nav aria-label="Footer"><a href="#/">Home</a> <a href="#/library">Troubleshooting</a> <a href="#/quiz">Quiz</a> <a href="#/assistant">Assistant</a> <a href="#/about">About</a></nav>
+  <nav aria-label="Footer"><a href="#/">Home</a> <a href="#/library">Troubleshooting</a> <a href="#/quiz">Quiz</a> <a href="#/about">About</a></nav>
   <p><strong>Safety:</strong> Hexadora is for education only. Never open a power supply or touch exposed electrical parts. Back up data before risky steps. Ask a teacher or qualified technician when unsure.</p></div></footer>
 <div id="toast" role="status" aria-live="polite"></div>
 </body>
