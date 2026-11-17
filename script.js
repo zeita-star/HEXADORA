@@ -530,16 +530,53 @@ const PROBLEMS = [["power","Computer does not power on"],["nodisplay","Computer 
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const mem = {};
-const store = {
-  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : (k in mem ? mem[k] : d); } catch { return k in mem ? mem[k] : d; } },
-  set(k, v) { mem[k] = v; try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+const GUIDE_IDS = new Set(GUIDES.map(g => g.id));
+const STORE_KEYS = new Set(["hx-favs", "hx-prog", "hx-theme"]);
+const isPlainObject = v => v !== null && typeof v === "object" && !Array.isArray(v);
+const validateStored = (k, v) => {
+  if (k === "hx-favs") return Array.isArray(v) ? [...new Set(v.filter(x => typeof x === "string" && GUIDE_IDS.has(x)))].slice(0, GUIDES.length) : [];
+  if (k === "hx-prog") {
+    if (!isPlainObject(v)) return {};
+    const out = {};
+    for (const [id, raw] of Object.entries(v)) {
+      if (!GUIDE_IDS.has(id) || !isPlainObject(raw)) continue;
+      const n = byId(id).steps.length;
+      const done = Array.isArray(raw.done) ? [...new Set(raw.done.filter(x => Number.isInteger(x) && x >= 0 && x < n))] : [];
+      const i = Number.isInteger(raw.i) ? Math.min(Math.max(raw.i, 0), n - 1) : 0;
+      const stages = new Set(["do", "result", "cant", "unsure"]);
+      out[id] = { i, done, stage: stages.has(raw.stage) ? raw.stage : "do", solved: raw.solved === true, end: raw.end === true, help: raw.help === true };
+    }
+    return out;
+  }
+  if (k === "hx-theme") return v === "dark" ? "dark" : "light";
+  return null;
 };
+const store = {
+  get(k, d) {
+    if (!STORE_KEYS.has(k)) return d;
+    try {
+      const raw = localStorage.getItem(k);
+      if (raw === null) return d;
+      const parsed = JSON.parse(raw);
+      const safe = validateStored(k, parsed);
+      mem[k] = safe;
+      return safe;
+    } catch { return d; }
+  },
+  set(k, v) {
+    if (!STORE_KEYS.has(k)) return;
+    const safe = validateStored(k, v);
+    mem[k] = safe;
+    try { localStorage.setItem(k, JSON.stringify(safe)); } catch {}
+  }
+};
+const esc = value => String(value ?? "").replace(/[&<>\"']/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" })[ch]);
 const dec = s => { try { return decodeURIComponent(s); } catch { return ""; } };
-const byId = id => GUIDES.find(g => g.id === id);
+const byId = id => typeof id === "string" ? GUIDES.find(g => g.id === id) : undefined;
 let favs = store.get("hx-favs", []), prog = store.get("hx-prog", {});
 function toast(msg) { const t = $("#toast"); if (!t) return; t.textContent = msg; t.classList.add("show"); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("show"), 2200); }
 function matches(g, q) { q = q.trim().toLowerCase(); if (!q) return true; const hay = [g.title, g.cat, g.ov, g.kw, ...g.sy, ...g.ca].join(" ").toLowerCase(); return q.split(/\s+/).every(w => hay.includes(w)); }
-const card = g => `<a class="card" href="#/guide/${g.id}"><span class="tag">${g.cat}</span><h3>${g.title}</h3><p>${g.ov.split(". ")[0]}.</p><span class="muted small">${g.diff} ${favs.includes(g.id) ? "· ★ Favorite" : ""}</span></a>`;
+const card = g => g ? `<a class="card" href="#/guide/${encodeURIComponent(g.id)}"><span class="tag">${esc(g.cat)}</span><h3>${esc(g.title)}</h3><p>${esc(g.ov.split(". ")[0])}.</p><span class="muted small">${esc(g.diff)} ${favs.includes(g.id) ? "· ★ Favorite" : ""}</span></a>` : "";
 
 /* ===== INTRO ===== */
 function hideIntro() {
@@ -560,9 +597,10 @@ function initIntro() {
 }
 
 /* ===== VIEWS / ROUTER ===== */
-function setTheme(t) { document.documentElement.dataset.theme = t; const b = $("#themeBtn"); b.textContent = t === "dark" ? "☀️" : "🌙"; b.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme"); store.set("hx-theme", t); }
+function setTheme(t) { t = t === "dark" ? "dark" : "light"; document.documentElement.dataset.theme = t; const b = $("#themeBtn"); b.textContent = t === "dark" ? "☀️" : "🌙"; b.setAttribute("aria-label", t === "dark" ? "Switch to light theme" : "Switch to dark theme"); store.set("hx-theme", t); }
 function routeCore() {
-  const [, view = "", arg = ""] = (location.hash || "#/").slice(1).split("/");
+  const [, view = "", ...parts] = (location.hash || "#/").slice(1).split("/");
+  const arg = parts.join("/");
   const name = ["library", "guide", "quiz", "about"].includes(view) ? view : "home";
   document.title = "HEXADORA – Computer Troubleshooting for TVL-ICT";
   $$("[data-view]").forEach(s => s.hidden = s.dataset.view !== name);
@@ -578,14 +616,14 @@ function routeCore() {
 Object.assign(ICON, { "Computer Hardware and Components": ICON.Hardware, "Monitor and Display Problems": ICON.Software, "Operating System and Startup": ICON["Operating Systems"], "Software and Application Errors": ICON.Software, "Networking and Internet Connectivity": ICON.Networking, "Peripheral Devices": ICON.Hardware, "Storage and File Management": ICON.Maintenance, "Computer Performance and Maintenance": ICON.Maintenance, "Security and System Protection": ICON["Operating Systems"], "BIOS, Drivers, and System Configuration": ICON.Hardware });
 Object.assign(CAT_INFO, { "Computer Hardware and Components": "Power, memory, fans and laptop hardware.", "Monitor and Display Problems": "Screens, signal, flicker and resolution.", "Operating System and Startup": "Boot, Windows features and updates.", "Software and Application Errors": "Crashes, installs, saving and settings.", "Networking and Internet Connectivity": "Wi-Fi, cables, sharing and IP problems.", "Peripheral Devices": "Keyboard, mouse, USB, audio and printers.", "Storage and File Management": "Drives, backups, files and cleanup.", "Computer Performance and Maintenance": "Slowness, heat, CPU and memory.", "Security and System Protection": "Malware, phishing and sign-in safety.", "BIOS, Drivers, and System Configuration": "Drivers, BIOS and system settings." });
 function renderHome() {
-  $("#cats").innerHTML = CATS.map(c => `<a class="card" href="#/library/${encodeURIComponent(c)}">${icon(c)}<h3>${c}</h3><p>${CAT_INFO[c]}</p></a>`).join("");
+  $("#cats").innerHTML = CATS.map(c => `<a class="card" href="#/library/${encodeURIComponent(c)}">${icon(c)}<h3>${esc(c)}</h3><p>${esc(CAT_INFO[c])}</p></a>`).join("");
   $("#featured").innerHTML = ["power", "slow", "internet", "bsod"].map(id => card(byId(id))).join("");
 }
 function heroSearch() {
   const q = $("#heroSearch").value, out = $("#heroResults");
   if (!q.trim()) { out.innerHTML = ""; return; }
   const r = GUIDES.filter(g => matches(g, q)).slice(0, 5);
-  out.innerHTML = r.length ? r.map(g => `<li><a href="#/guide/${g.id}">${g.title}</a></li>`).join("") : `<li>No guides found. Try other words or <a href="#/quiz">take the quiz</a>.</li>`;
+  out.innerHTML = r.length ? r.map(g => `<li><a href="#/guide/${encodeURIComponent(g.id)}">${esc(g.title)}</a></li>`).join("") : `<li>No guides found. Try other words or <a href="#/quiz">take the quiz</a>.</li>`;
 }
 
 /* ===== LIBRARY ===== */
@@ -620,16 +658,16 @@ function stepReduce(s, a, n) {
   return s;
 }
 function stepper(g, id) {
-  const box = $("#stepper"), n = g.steps.length, B = (a, t, c = "") => `<button type="button" class="btn ${c}" data-a="${a}">${t}</button>`;
+  const box = $("#stepper"), n = g.steps.length, B = (a, t, c = "") => `<button type="button" class="btn ${esc(c)}" data-a="${esc(a)}">${esc(t)}</button>`;
   const old = prog[id]; let s = old && !Array.isArray(old) ? { stage: "do", help: false, ...old } : { i: 0, stage: "do", done: [], solved: false, end: false, help: false };
   s.i = Math.min(Math.max(+s.i || 0, 0), n - 1);
   const draw = focus => {
     prog[id] = { i: s.i, done: s.done, solved: s.solved, end: s.end, help: s.help }; store.set("hx-prog", prog);
     let h = `<progress max="${n}" value="${s.done.length}" aria-label="Steps confirmed"></progress><p class="muted small">${s.done.length} of ${n} steps confirmed. Confirming a step means you did it yourself.</p>`;
-    if (s.solved) h += `<div class="stepbox"><h3>Problem solved</h3><p>Good work. Summary: you confirmed ${s.done.length} of ${n} steps. Check one more time: ${g.ver}</p></div><div class="sbtns">${B("prev", "Back to last step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
-    else if (s.end) h += `<div class="stepbox"><h3>${s.help ? "Stop and ask for help" : "All steps finished"}</h3><p>${s.help ? "" : "The problem is still there. "}Summary: you confirmed ${s.done.length} of ${n} steps. ${g.stop}</p></div><div class="sbtns">${B("prev", "Previous step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
+    if (s.solved) h += `<div class="stepbox"><h3>Problem solved</h3><p>Good work. Summary: you confirmed ${s.done.length} of ${n} steps. Check one more time: ${esc(g.ver)}</p></div><div class="sbtns">${B("prev", "Back to last step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
+    else if (s.end) h += `<div class="stepbox"><h3>${s.help ? "Stop and ask for help" : "All steps finished"}</h3><p>${s.help ? "" : "The problem is still there. "}Summary: you confirmed ${s.done.length} of ${n} steps. ${esc(g.stop)}</p></div><div class="sbtns">${B("prev", "Previous step", "alt")}${B("restart", "Restart guide", "alt")}</div>`;
     else {
-      h += `<div class="stepbox"><p class="stepno">Step ${s.i + 1} of ${n}</p><p class="steptext">${g.steps[s.i]}</p>`;
+      h += `<div class="stepbox"><p class="stepno">Step ${s.i + 1} of ${n}</p><p class="steptext">${esc(g.steps[s.i])}</p>`;
       if (s.stage === "do") h += `<p><strong>Have you completed this step?</strong></p><div class="sbtns">${B("did", "I completed this step")}${B("cant", "I couldn't complete this step", "alt")}</div>`;
       else if (s.stage === "result") h += `<p><strong>Is the problem fixed now?</strong></p><div class="sbtns">${B("fixed", "Yes, problem solved")}${B("notfixed", s.i >= n - 1 ? "No, it is still there" : "No, continue troubleshooting", "alt")}${B("unsure", "I am not sure", "alt")}${B("again", "Back to this step", "alt")}</div>`;
       else if (s.stage === "unsure") h += `<p class="note">Compare your computer with the symptoms listed on this page. If you still see any of them, the problem is not solved yet. A teacher can also check with you.</p><div class="sbtns">${B("fixed", "Yes, problem solved")}${B("notfixed", "No, continue troubleshooting", "alt")}${B("help", "Ask a teacher or technician", "alt")}</div>`;
@@ -645,17 +683,17 @@ function renderGuide(id) {
   const g = byId(id), box = $("#guide");
   if (!g) { box.innerHTML = `<div class="empty"><p class="bad">Guide not found.</p><a class="btn" href="#/library">Back to library</a></div>`; return; }
   document.title = g.title + " – HEXADORA";
-  const done = prog[id] || [], fav = favs.includes(id), li = a => a.map(x => `<li>${x}</li>`).join("");
+  const fav = favs.includes(id), li = a => a.map(x => `<li>${esc(x)}</li>`).join("");
   box.innerHTML = `<p class="no-print"><a href="#/library">← Back to library</a> · <a href="#/">Home</a></p>
-  <span class="tag">${g.cat}</span><h1>${g.title}</h1><p class="lead">${g.ov}</p>
-  <p><strong>Difficulty:</strong> ${g.diff}. <strong>Tools:</strong> ${g.tools}.</p>
-  <div class="row no-print"><button class="btn alt" id="favBtn" aria-pressed="${fav}">${fav ? "★ Remove from favorites" : "☆ Add to favorites"}</button><button class="btn alt" id="printBtn">Print guide</button></div>
-  <div class="warn" role="note"><span class="wi" aria-hidden="true">⚠</span><span><strong>Warning:</strong> ${g.warn}</span></div>
+  <span class="tag">${esc(g.cat)}</span><h1>${esc(g.title)}</h1><p class="lead">${esc(g.ov)}</p>
+  <p><strong>Difficulty:</strong> ${esc(g.diff)}. <strong>Tools:</strong> ${esc(g.tools)}.</p>
+  <div class="row no-print"><button class="btn alt" id="favBtn" aria-pressed="${fav ? "true" : "false"}">${fav ? "★ Remove from favorites" : "☆ Add to favorites"}</button><button class="btn alt" id="printBtn">Print guide</button></div>
+  <div class="warn" role="note"><span class="wi" aria-hidden="true">⚠</span><span><strong>Warning:</strong> ${esc(g.warn)}</span></div>
   <div class="gcols"><aside class="gside card"><h2>Symptoms you may observe</h2><ul>${li(g.sy)}</ul>
   <h2>Possible causes</h2><p class="muted">These are possibilities, not confirmed diagnoses.</p><ul>${li(g.ca)}</ul></aside><div class="gmain">
-  <h2>Troubleshooting steps</h2><div id="stepper" aria-live="polite"></div><ol class="print-only">${g.steps.map(x => `<li>${x}</li>`).join("")}</ol>
-  <h2>How to verify it is fixed</h2><p class="good">${g.ver}</p>
-  <h2>When to stop and ask for help</h2><p class="note">${g.stop}</p></div></div>`;
+  <h2>Troubleshooting steps</h2><div id="stepper" aria-live="polite"></div><ol class="print-only">${g.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol>
+  <h2>How to verify it is fixed</h2><p class="good">${esc(g.ver)}</p>
+  <h2>When to stop and ask for help</h2><p class="note">${esc(g.stop)}</p></div></div>`;
   stepper(g, id);
   $("#printBtn").onclick = () => window.print();
   $("#favBtn").onclick = () => { favs = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id]; store.set("hx-favs", favs); renderGuide(id); toast(favs.includes(id) ? "Added to favorites" : "Removed from favorites"); };
@@ -698,7 +736,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setTheme(store.get("hx-theme", matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
   $("#themeBtn").onclick = () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
   $("#menuBtn").onclick = () => { const o = $("#nav").classList.toggle("open"); $("#menuBtn").setAttribute("aria-expanded", o); $("#menuBtn").setAttribute("aria-label", o ? "Close menu" : "Open menu"); };
-  $("#cat").innerHTML = `<option value="all">All categories</option>` + CATS.map(c => `<option>${c}</option>`).join("");
+  $("#cat").innerHTML = `<option value="all">All categories</option>` + CATS.map(c => `<option>${esc(c)}</option>`).join("");
   ["q", "cat", "sort"].forEach(i => $("#" + i).addEventListener("input", renderList));
   $("#favOnly").onclick = () => { favMode = !favMode; renderList(); };
   $("#clear").onclick = () => { $("#q").value = ""; $("#cat").value = "all"; $("#sort").value = "az"; favMode = false; renderList(); toast("Filters cleared"); };

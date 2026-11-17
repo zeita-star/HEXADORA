@@ -112,3 +112,6 @@ a.card:hover{box-shadow:0 8px 22px rgba(38,59,170,.2)}#nav a{transition:border-c
 
 /* v6: make the hidden attribute always win over component display rules */
 [hidden]{display:none!important}
+
+/* Security: keep the reusable SVG symbol sprite visually hidden without inline styles. */
+.svg-defs { position: absolute; }
