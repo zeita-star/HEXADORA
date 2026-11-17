@@ -37,29 +37,12 @@ All links are `#/...` hash links and all files use relative paths, so the site w
 ## Notes
 Hexadora never scans a device or collects data. Favorites, progress and theme are stored only in the visitor's own browser.
 
-## HEXADORA Assistant (AI) setup
-The assistant needs a small backend, because an API key can never go in a GitHub Pages site. The site works fully without it; until configured, the Assistant page says it is not set up.
-
-- **Backend:** `worker/worker.js`, a Cloudflare Worker. The site sends the student's messages plus the 3 most relevant guides; the Worker adds safety rules and calls the Anthropic API.
-- **Costs (check current prices before enabling):** Cloudflare Workers has a free plan with daily limits. The Anthropic API is pay-per-use and needs a key from console.anthropic.com with billing turned on. Set a monthly spend limit there. Nothing is purchased by these files.
-- **Steps:**
-  1. Create free Cloudflare and Anthropic accounts (you or your teacher).
-  2. Edit `worker/wrangler.toml`: set `ALLOWED_ORIGIN` to your site origin, e.g. `https://YOUR-NAME.github.io` (no path).
-  3. In the `worker` folder run `npx wrangler login`, then `npx wrangler secret put ANTHROPIC_API_KEY` and paste the key, then `npx wrangler deploy`.
-  4. Copy the Worker URL printed at the end into `AI_ENDPOINT` at the top of the assistant section of `script.js`, then upload `script.js` again.
-- **Security built in:** key stored only as a Worker secret; only your site origin is allowed; input length and size limits; about 20 questions per visitor per hour (best effort, so also add a Cloudflare rate-limiting rule); upstream errors are not shown to users; messages are not stored or logged by this code.
-- **Privacy:** messages go to Cloudflare and the AI provider, and the Assistant page warns students not to type personal information. Check your school's rules first.
-- **Never upload** `.dev.vars`, `.env`, or the `backup-before-v3` folder (originals before this upgrade).
-
 ## Animations
 Page changes, cards, buttons, the logo and scroll reveals use CSS animations. Devices set to "reduce motion" get no animation. Back and forward buttons restore your scroll position.
 
 ## Step-by-step guides
 Every guide shows one instruction at a time. The student confirms they did it, then answers whether the problem is fixed. Confirmed steps are counted only as "confirmed", never as proof. "I cannot do this step" offers skip or help. Progress is saved in the visitor's browser. The full list is hidden on screen and appears only when printing.
 
-## Assistant: deployment errors
-- Page says "not set up": `AI_ENDPOINT` in `script.js` is still empty. Paste the Worker URL and re-upload `script.js`.
-- "Could not reach the assistant": the Worker URL is wrong, or `ALLOWED_ORIGIN` in `wrangler.toml` does not exactly match `https://zeita-star.github.io` (no path, no trailing slash). Redeploy after editing.
-- "Unavailable" (502/503): the secret `ANTHROPIC_API_KEY` is missing or the API account has no credit. Check with `npx wrangler tail`.
-- "Too many questions" (429): the per-visitor hourly limit was reached.
-- The model name is set by `MODEL` in `wrangler.toml` (default `claude-haiku-5-5`). Confirm it appears in your Anthropic console model list before relying on it.
+
+## Adding more guides later
+Add a `G("id","Title Case Title","Category",...)` entry to `GUIDES` in `script.js`. Use a new unique id. Categories, counts, search, sorting and "Show more" paging update automatically; a new category name only needs an optional entry in `CAT_ORDER`, `CAT_INFO` and `ICON`. Then add the id to a quiz option so it can be recommended.
